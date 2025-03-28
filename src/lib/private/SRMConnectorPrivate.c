@@ -20,8 +20,11 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <xf86drmMode.h>
+
+#ifdef SRM_USE_LIBDISPLAYINFO
 #include <libdisplay-info/edid.h>
 #include <libdisplay-info/info.h>
+#endif
 
 #include <string.h>
 #include <errno.h>
@@ -179,6 +182,7 @@ UInt8 srmConnectorUpdateNames(SRMConnector *connector)
         return 0;
     }
 
+#ifdef SRM_USE_LIBDISPLAYINFO
     struct di_info *info = di_info_parse_edid(blob->data, blob->length);
 
     if (!info)
@@ -193,6 +197,12 @@ UInt8 srmConnectorUpdateNames(SRMConnector *connector)
     connector->model = di_info_get_model(info);
     connector->serial = di_info_get_serial(info);
     di_info_destroy(info);
+#else
+    connector->manufacturer = "N/A";
+    connector->model = "N/A";
+    connector->serial = "N/A";
+#endif
+
     drmModeFreePropertyBlob(blob);
     drmModeFreeConnector(connectorRes);
     return 1;

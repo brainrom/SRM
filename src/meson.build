@@ -66,8 +66,14 @@ glesv2_dep       = dependency('glesv2', version: '>= 3.2')
 udev_dep         = dependency('libudev', version: '>= 249')
 drm_dep          = dependency('libdrm', version: '>= 2.4.113')
 gbm_dep          = dependency('gbm', version: '>= 23.2.1')
-display_info_dep = dependency('libdisplay-info')
+display_info_dep = dependency('libdisplay-info', required : false)
 pthread_dep      = c.find_library('pthread')
+
+if display_info_dep.found() and get_option('use_display_info')
+add_project_arguments([
+        '-DSRM_USE_LIBDISPLAYINFO'
+], language: 'c')
+endif
 
 drm_headers_dep = drm_dep.partial_dependency(compile_args: true, includes: true)
 

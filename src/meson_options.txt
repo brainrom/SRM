@@ -1,2 +1,3 @@
 option('build_examples', type : 'boolean', value : true)
 option('build_tests', type : 'boolean', value : false)
+option('use_display_info', type : 'boolean', value : true)
