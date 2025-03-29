@@ -11,10 +11,6 @@
 #include <sys/mman.h>
 #include <string.h>
 #include <stdlib.h>
-#include <gbm.h>
-#include <EGL/eglext.h>
-#include <GLES2/gl2.h>
-#include <GLES2/gl2ext.h>
 #include <unistd.h>
 #include <xf86drm.h>
 #include <xf86drmMode.h>

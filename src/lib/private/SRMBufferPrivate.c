@@ -13,7 +13,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/mman.h>
-#include <xf86drm.h>
 
 SRMBuffer *srmBufferCreate(SRMCore *core, SRMDevice *allocator)
 {

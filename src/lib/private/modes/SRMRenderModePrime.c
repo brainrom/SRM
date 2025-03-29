@@ -16,7 +16,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <GL/gl.h>
-#include <GLES2/gl2.h>
 
 #define MODE_NAME "PRIME"
 
